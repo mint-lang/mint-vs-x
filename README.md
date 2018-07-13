@@ -26,3 +26,12 @@ To get the development server up and running:
 At this point we have type checking, and HTML compiling successfully.
 
 Time to complete: **1.5 hours** (with a lot of web searches)
+
+# 2. Adding styles to elements
+
+This is pretty easy using `styled-components`:
+
+* Install styled-components with `yarn add styled-components`
+* Create initial [`src/main.jsx`](./src/main.jsx)
+
+Time to complete: **0.5 hours**

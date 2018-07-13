@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import ReactDOM from "react-dom";
+
+const StyledDiv = styled.div`
+  background: red;
+`
 
 class Main extends Component {
   render () {
-    return <div>Hello World!</div>
+    return <StyledDiv>Hello World!</StyledDiv>
   }
 }
 
