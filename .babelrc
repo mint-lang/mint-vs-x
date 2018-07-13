@@ -1,0 +1,4 @@
+{
+  "plugins": ["typecheck"],
+  "presets": ["react"]
+}
