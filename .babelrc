@@ -1,4 +1,4 @@
 {
-  "plugins": ["typecheck"],
-  "presets": ["react"]
+  "plugins": ["typecheck", "react-flow-props-to-prop-types"],
+  "presets": ["es2015", "react", "stage-0"]
 }
