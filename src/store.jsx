@@ -3,6 +3,7 @@ import { createStore } from "redux";
 /* These are the actions we can take. */
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
+const SET = "SET";
 
 /* The type of the state. */
 type State = {|
@@ -11,6 +12,7 @@ type State = {|
 
 /* The type of the action. */
 type Action = {|
+  payload: any,
   type: string
 |};
 
@@ -28,22 +30,33 @@ const reducer = function(state: State = initialState, action: Action): State {
     case DECREMENT:
       return { ...state, counter: state.counter - 1 };
 
+    case SET:
+      return { ...state, counter: action.payload };
+
     default:
       return state;
   }
 };
 
-/* This is an action creater for the increment action. */
+/* This is an action creator for the increment action. */
 export const increment = (): Action => {
   return {
     type: INCREMENT
   };
 };
 
-/* This is an action creater for the decrement action. */
+/* This is an action creator for the decrement action. */
 export const decrement = (): Action => {
   return {
     type: DECREMENT
+  };
+};
+
+/* This is an action creator for the set action. */
+export const set = (payload : number): Action => {
+  return {
+    payload: payload,
+    type: SET
   };
 };
 

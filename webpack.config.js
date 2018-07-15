@@ -19,5 +19,15 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: {
+      rewrites: [
+        {
+          from: '/./',
+          to: '/'
+        }
+      ]
+    }
   }
 }

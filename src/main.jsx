@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 /* We need to import the action creators and the store from the other file. */
-import { store, increment, decrement } from "./store.jsx";
+import { store, increment, decrement, set } from "./store.jsx";
 
 /* The connect comes from the react-redux package. */
 import { connect } from "react-redux";
@@ -12,6 +12,10 @@ import Counter from './counter.jsx';
 
 /* This is our main component which is connected to the store. */
 class Main extends Component {
+  componentDidMount () {
+    this.props.set(this.props.initialCount)
+  }
+
   render() {
     const { counter, onIncrement, onDecrement } = this.props;
 
@@ -42,6 +46,9 @@ const mapDispatchToProps = dispatch => {
     },
     onDecrement: () => {
       dispatch(decrement());
+    },
+    set: (payload : number) => {
+      dispatch(set(payload));
     }
   };
 };
@@ -54,6 +61,36 @@ export const App = connect(
   mapDispatchToProps
 )(Main);
 
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
+const RoutedApp = (props) =>  {
+  const parsed = Number.parseInt(props.match.params.count)
+  const initialCount = parsed || 0
+
+  return <App store={store} initialCount={ initialCount} key={initialCount.toString()}/>
+}
+
+const Page = () =>
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">0</Link></li>
+        <li><Link to="/1">1</Link></li>
+        <li><Link to="/topics">About</Link></li>
+      </ul>
+
+      <hr/>
+
+      <Route exact path="/" render={RoutedApp}/>
+      <Route path="/:count" component={RoutedApp}/>
+    </div>
+  </Router>
+
 import ReactDOM from "react-dom";
 
-ReactDOM.render(<App store={store}/>,document.getElementById('root'));
+ReactDOM.render(<Page/>,document.getElementById('root'));
