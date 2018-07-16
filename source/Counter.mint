@@ -1,7 +1,11 @@
 component Counter {
-  /* Here we are defining the properties of the counter. */
-  property onIncrement : Function(Void) = \ => void
-  property onDecrement : Function(Void) = \ => void
+  /* This is a function to handle the increment button. */
+  property onIncrement : Function(Void) = (\ => void)
+
+  /* This is a function to handle the decrement button. */
+  property onDecrement : Function(Void) = (\ => void)
+
+  /* This is a counter number to display. */
   property counter : Number = 0
 
   /* This is the styling for the base div. */
@@ -34,7 +38,9 @@ component Counter {
     }
   }
 
+  /* This renders the component. */
   fun render : Html {
+    /* An element can have a style using the double colon "::" notation. */
     <div::base>
       <button onClick={\event : Html.Event => onDecrement()}>
         <{ "Decrement" }>

@@ -1,3 +1,4 @@
+/* The "Main" component is the one which gets rendered on the page. */
 component Main {
   /*
   We are connecting to the store and explicitly exposing
@@ -6,6 +7,7 @@ component Main {
   */
   connect Store exposing { counter, increment, decrement, page }
 
+  /* This is the styling of the base element. */
   style base {
     justify-content: center;
     flex-direction: column;
@@ -15,7 +17,9 @@ component Main {
     height: 100vh;
   }
 
+  /* Returns the content. */
   get content : Html {
+    /* Decide what to render based on the page. */
     case (page) {
       "counter" =>
         <Counter
@@ -24,20 +28,40 @@ component Main {
           counter={counter}/>
 
       "about" =>
-        <div><{ "about" }></div>
+        <div>
+          <{ "about" }>
+        </div>
 
       =>
-        <div><{ "" }></div>
+        <div>
+          <{ "" }>
+        </div>
     }
   }
 
+  /* Renders the component. */
   fun render : Html {
     <div::base>
-      <div>
-        <a href="/"><{ "/0" }></a>
-        <a href="/10"><{ "/10" }></a>
-        <a href="/about"><{ "/about" }></a>
-      </div>
+      <ul>
+        <li>
+          <a href="/">
+            <{ "/0" }>
+          </a>
+        </li>
+
+        <li>
+          <a href="/10">
+            <{ "/10" }>
+          </a>
+        </li>
+
+        <li>
+          <a href="/about">
+            <{ "/about" }>
+          </a>
+        </li>
+      </ul>
+
       <{ content }>
     </div>
   }
