@@ -1,9 +1,9 @@
 component Counter {
   /* This is a function to handle the increment button. */
-  property onIncrement : Function(Void) = (\ => void)
+  property onIncrement : Function(Void) = () : Void => { void }
 
   /* This is a function to handle the decrement button. */
-  property onDecrement : Function(Void) = (\ => void)
+  property onDecrement : Function(Void) = () : Void => { void }
 
   /* This is a counter number to display. */
   property counter : Number = 0
@@ -42,7 +42,7 @@ component Counter {
   fun render : Html {
     /* An element can have a style using the double colon "::" notation. */
     <div::base>
-      <button onClick={\event : Html.Event => onDecrement()}>
+      <button onClick={(event : Html.Event) : Void => { onDecrement() }}>
         <{ "Decrement" }>
       </button>
 
@@ -50,7 +50,7 @@ component Counter {
         <{ Number.toString(counter) }>
       </span>
 
-      <button onClick={\event : Html.Event => onIncrement()}>
+      <button onClick={(event : Html.Event) : Void => { onIncrement() }}>
         <{ "Increment" }>
       </button>
     </div>
