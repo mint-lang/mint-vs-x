@@ -27,10 +27,7 @@ component Main {
           onDecrement={decrement}
           counter={counter}/>
 
-      "about" =>
-        <div>
-          <{ "about" }>
-        </div>
+      "about" => <About/>
 
       =>
         <div>
