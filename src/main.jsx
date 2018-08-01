@@ -9,6 +9,18 @@ import { connect } from "react-redux";
 
 /* Import the counter component. */
 import Counter from './counter.jsx';
+import About from './about.jsx';
+
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans;
+  display: flex;
+  height: 100vh;
+`
 
 /* This is our main component which is connected to the store. */
 class Main extends Component {
@@ -20,13 +32,11 @@ class Main extends Component {
     const { counter, onIncrement, onDecrement } = this.props;
 
     return (
-      <div>
-        <Counter
-          onIncrement={onIncrement}
-          onDecrement={onDecrement}
-          counter={counter}
-        />
-      </div>
+      <Counter
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        counter={counter}
+      />
     );
   }
 }
@@ -64,6 +74,7 @@ export const App = connect(
 
 import {
   BrowserRouter as Router,
+  Switch,
   Route,
   Link
 } from 'react-router-dom'
@@ -77,18 +88,21 @@ const RoutedApp = (props) =>  {
 
 const Page = () =>
   <Router>
-    <div>
+    <StyledDiv>
       <ul>
         <li><Link to="/">0</Link></li>
-        <li><Link to="/1">1</Link></li>
-        <li><Link to="/topics">About</Link></li>
+        <li><Link to="/10">10</Link></li>
+        <li><Link to="/about">About</Link></li>
       </ul>
 
       <hr/>
 
-      <Route exact path="/" render={RoutedApp}/>
-      <Route path="/:count" component={RoutedApp}/>
-    </div>
+      <Switch>
+        <Route exact path="/" render={RoutedApp}/>
+        <Route exact path="/about" component={About}/>
+        <Route path="/:count" component={RoutedApp}/>
+      </Switch>
+    </StyledDiv>
   </Router>
 
 import ReactDOM from "react-dom";
