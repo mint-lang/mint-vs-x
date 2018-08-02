@@ -1,3 +1,6 @@
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 module.exports = {
@@ -21,6 +24,7 @@ module.exports = {
     ]
   },
   devServer: {
+    overlay: true,
     contentBase: './public',
     historyApiFallback: {
       rewrites: [
@@ -30,5 +34,16 @@ module.exports = {
         }
       ]
     }
+  },
+  plugins: [
+    new FaviconsWebpackPlugin('../public/logo.png'),
+    new HtmlWebpackPlugin({
+      template: '../public/index.html'
+    })
+  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin()
+    ]
   }
 }
