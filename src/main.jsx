@@ -1,3 +1,8 @@
+// @flow
+
+import type { Dispatch as ReduxDispatch } from 'redux';
+import type { Action } from "./store.jsx";
+
 /* Default react imports. */
 import React, { Component } from "react";
 
@@ -22,8 +27,16 @@ const StyledDiv = styled.div`
   height: 100vh;
 `
 
+type Props = {
+  onIncrement: () => void,
+  onDecrement: () => void,
+  set: (number) => void,
+  initialCount: number,
+  counter: number
+};
+
 /* This is our main component which is connected to the store. */
-class Main extends Component {
+class Main extends Component<Props> {
   componentDidMount () {
     this.props.set(this.props.initialCount)
   }
@@ -49,7 +62,7 @@ const mapStateToProps = state => {
 };
 
 /* We need to map the actions from the store to our components properties. */
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch : ReduxDispatch<Action>) => {
   return {
     onIncrement: () => {
       dispatch(increment());
@@ -80,7 +93,7 @@ import {
 } from 'react-router-dom'
 
 const RoutedApp = (props) =>  {
-  const parsed = Number.parseInt(props.match.params.count)
+  const parsed = Number.parseInt(props.match.params.count || "")
   const initialCount = parsed || 0
 
   return <App store={store} initialCount={ initialCount} key={initialCount.toString()}/>
@@ -107,4 +120,6 @@ const Page = () =>
 
 import ReactDOM from "react-dom";
 
-ReactDOM.render(<Page/>,document.getElementById('root'));
+const root = document.getElementById('root')
+
+if (root) { ReactDOM.render(<Page/>, root) }

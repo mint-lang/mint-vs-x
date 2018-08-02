@@ -1,10 +1,19 @@
+// @flow
+
 /* Import the component class. */
 import React, { Component } from "react";
 
+type Props = {};
+
+type State = {
+  content : string,
+  status: string
+};
+
 /* The component for the about page. */
-export default class About extends Component {
+export default class About extends Component<Props, State> {
   /* In th constructor set the initial state. */
-  constructor(props) {
+  constructor(props : Props) {
     super(props)
 
     this.state = {

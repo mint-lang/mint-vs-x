@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from "react";
 import styled from "styled-components";
 
@@ -18,14 +20,14 @@ const CounterSpan = styled.span`
   padding: 0 20px;
 `
 
-export default class Counter extends Component {
-  /* These are the property type definitons. */
-  props: {
-    onIncrement: () => void,
-    onDecrement: () => void,
-    counter: number
-  }
+/* These are the property type definitons. */
+type Props = {
+  onIncrement: () => void,
+  onDecrement: () => void,
+  counter: number
+};
 
+export default class Counter extends Component<Props> {
   /* These are the default property values. */
   static defaultProps = {
     onIncrement: () => null,
@@ -34,7 +36,7 @@ export default class Counter extends Component {
   }
 
   /* This is a computed property for the background color. */
-  get background () {
+  background () {
     const { counter } = this.props
 
     if (counter >= 10) {
@@ -51,7 +53,7 @@ export default class Counter extends Component {
   render () {
     const { counter, onDecrement, onIncrement} = this.props
 
-    return <BaseDiv background={this.background}>
+    return <BaseDiv background={this.background()}>
       <button onClick={() => onDecrement()}>
         Decrement
       </button>

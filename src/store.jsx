@@ -1,3 +1,5 @@
+// @flow
+
 import { createStore } from "redux";
 
 /* These are the actions we can take. */
@@ -11,8 +13,8 @@ type State = {|
 |};
 
 /* The type of the action. */
-type Action = {|
-  payload: any,
+export type Action = {|
+  payload: number | null,
   type: string
 |};
 
@@ -31,7 +33,7 @@ const reducer = function(state: State = initialState, action: Action): State {
       return { ...state, counter: state.counter - 1 };
 
     case SET:
-      return { ...state, counter: action.payload };
+      return { ...state, counter: action.payload || 0 };
 
     default:
       return state;
@@ -41,14 +43,16 @@ const reducer = function(state: State = initialState, action: Action): State {
 /* This is an action creator for the increment action. */
 export const increment = (): Action => {
   return {
-    type: INCREMENT
+    type: INCREMENT,
+    payload: null
   };
 };
 
 /* This is an action creator for the decrement action. */
 export const decrement = (): Action => {
   return {
-    type: DECREMENT
+    type: DECREMENT,
+    payload: null
   };
 };
 
