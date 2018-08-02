@@ -1,7 +1,8 @@
 {
   "name": "mint-vs-x",
   "application": {
-    "title": "Counter"
+    "title": "Counter",
+    "icon": "assets/logo.png"
   },
   "source-directories": [
     "source"
