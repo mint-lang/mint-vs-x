@@ -1,10 +1,12 @@
 // @flow
 
+/* Import types. */
 import type { Dispatch as ReduxDispatch } from 'redux';
 import type { Action } from "./store.jsx";
 
 /* Default react imports. */
 import React, { Component } from "react";
+import styled from "styled-components";
 
 /* We need to import the action creators and the store from the other file. */
 import { store, increment, decrement, set } from "./store.jsx";
@@ -14,10 +16,12 @@ import { connect } from "react-redux";
 
 /* Import the counter component. */
 import Counter from './counter.jsx';
+
+/* Import the about page component. */
 import About from './about.jsx';
 
-import styled from "styled-components";
 
+/* The base style. */
 const StyledDiv = styled.div`
   justify-content: center;
   flex-direction: column;

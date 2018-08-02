@@ -35,7 +35,7 @@ export default class Counter extends Component<Props> {
     counter: 0
   }
 
-  /* This is a computed property for the background color. */
+  /* This is a function to return the background color. */
   background () {
     const { counter } = this.props
 
@@ -50,6 +50,7 @@ export default class Counter extends Component<Props> {
     }
   }
 
+  /* Renders the component. */
   render () {
     const { counter, onDecrement, onIncrement} = this.props
 
