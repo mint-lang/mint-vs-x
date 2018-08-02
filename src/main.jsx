@@ -1,7 +1,7 @@
 // @flow
 
 /* Import types. */
-import type { Dispatch as ReduxDispatch } from 'redux';
+import type { Dispatch as ReduxDispatch } from "redux";
 import type { Action } from "./store.jsx";
 
 /* Default react imports. */
@@ -15,11 +15,10 @@ import { store, increment, decrement, set } from "./store.jsx";
 import { connect } from "react-redux";
 
 /* Import the counter component. */
-import Counter from './counter.jsx';
+import Counter from "./counter.jsx";
 
 /* Import the about page component. */
-import About from './about.jsx';
-
+import About from "./about.jsx";
 
 /* The base style. */
 const StyledDiv = styled.div`
@@ -29,20 +28,20 @@ const StyledDiv = styled.div`
   font-family: sans;
   display: flex;
   height: 100vh;
-`
+`;
 
 type Props = {
   onIncrement: () => void,
   onDecrement: () => void,
-  set: (number) => void,
+  set: number => void,
   initialCount: number,
   counter: number
 };
 
 /* This is our main component which is connected to the store. */
 class Main extends Component<Props> {
-  componentDidMount () {
-    this.props.set(this.props.initialCount)
+  componentDidMount() {
+    this.props.set(this.props.initialCount);
   }
 
   render() {
@@ -66,7 +65,7 @@ const mapStateToProps = state => {
 };
 
 /* We need to map the actions from the store to our components properties. */
-const mapDispatchToProps = (dispatch : ReduxDispatch<Action>) => {
+const mapDispatchToProps = (dispatch: ReduxDispatch<Action>) => {
   return {
     onIncrement: () => {
       dispatch(increment());
@@ -74,7 +73,7 @@ const mapDispatchToProps = (dispatch : ReduxDispatch<Action>) => {
     onDecrement: () => {
       dispatch(decrement());
     },
-    set: (payload : number) => {
+    set: (payload: number) => {
       dispatch(set(payload));
     }
   };
@@ -88,42 +87,51 @@ export const App = connect(
   mapDispatchToProps
 )(Main);
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
+const RoutedApp = props => {
+  const parsed = Number.parseInt(props.match.params.count || "");
+  const initialCount = parsed || 0;
 
-const RoutedApp = (props) =>  {
-  const parsed = Number.parseInt(props.match.params.count || "")
-  const initialCount = parsed || 0
+  return (
+    <App
+      store={store}
+      initialCount={initialCount}
+      key={initialCount.toString()}
+    />
+  );
+};
 
-  return <App store={store} initialCount={ initialCount} key={initialCount.toString()}/>
-}
-
-const Page = () =>
+const Page = () => (
   <Router>
     <StyledDiv>
       <ul>
-        <li><Link to="/">0</Link></li>
-        <li><Link to="/10">10</Link></li>
-        <li><Link to="/about">About</Link></li>
+        <li>
+          <Link to="/">0</Link>
+        </li>
+        <li>
+          <Link to="/10">10</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
       </ul>
 
-      <hr/>
+      <hr />
 
       <Switch>
-        <Route exact path="/" render={RoutedApp}/>
-        <Route exact path="/about" component={About}/>
-        <Route path="/:count" component={RoutedApp}/>
+        <Route exact path="/" render={RoutedApp} />
+        <Route exact path="/about" component={About} />
+        <Route path="/:count" component={RoutedApp} />
       </Switch>
     </StyledDiv>
   </Router>
+);
 
 import ReactDOM from "react-dom";
 
-const root = document.getElementById('root')
+const root = document.getElementById("root");
 
-if (root) { ReactDOM.render(<Page/>, root) }
+if (root) {
+  ReactDOM.render(<Page />, root);
+}

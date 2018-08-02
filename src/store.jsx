@@ -57,7 +57,7 @@ export const decrement = (): Action => {
 };
 
 /* This is an action creator for the set action. */
-export const set = (payload : number): Action => {
+export const set = (payload: number): Action => {
   return {
     payload: payload,
     type: SET

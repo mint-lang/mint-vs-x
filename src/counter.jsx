@@ -11,14 +11,14 @@ const BaseDiv = styled.div`
   display: flex;
   padding: 20px;
   margin: 20px;
-`
+`;
 
 /* This is the styling for the counter span. */
 const CounterSpan = styled.span`
   font-family: sans;
   font-size: 20px;
   padding: 0 20px;
-`
+`;
 
 /* These are the property type definitons. */
 type Props = {
@@ -33,39 +33,35 @@ export default class Counter extends Component<Props> {
     onIncrement: () => null,
     onDecrement: () => null,
     counter: 0
-  }
+  };
 
   /* This is a function to return the background color. */
-  background () {
-    const { counter } = this.props
+  background() {
+    const { counter } = this.props;
 
     if (counter >= 10) {
-      return "lightgreen"
+      return "lightgreen";
     } else {
       if (counter < 0) {
-        return "orangered"
+        return "orangered";
       } else {
-        return "#F2F2F2"
+        return "#F2F2F2";
       }
     }
   }
 
   /* Renders the component. */
-  render () {
-    const { counter, onDecrement, onIncrement} = this.props
+  render() {
+    const { counter, onDecrement, onIncrement } = this.props;
 
-    return <BaseDiv background={this.background()}>
-      <button onClick={() => onDecrement()}>
-        Decrement
-      </button>
+    return (
+      <BaseDiv background={this.background()}>
+        <button onClick={() => onDecrement()}>Decrement</button>
 
-      <CounterSpan>
-        { counter }
-      </CounterSpan>
+        <CounterSpan>{counter}</CounterSpan>
 
-      <button onClick={() => onIncrement()}>
-        Increment
-      </button>
-    </BaseDiv>
+        <button onClick={() => onIncrement()}>Increment</button>
+      </BaseDiv>
+    );
   }
 }
