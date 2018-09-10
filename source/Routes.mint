@@ -13,7 +13,7 @@ routes {
   /* This matches the "/" path. */
   / {
     /* "do" allows us to do more things in sequence. */
-    do {
+    sequence {
       Store.setCounter(0)
       Store.setPage("counter")
     }
@@ -21,7 +21,7 @@ routes {
 
   /* This matches the "/10" path. */
   /:value (value : String) {
-    do {
+    sequence {
       /* Here we convert a string to a number safely. */
       counter =
         value

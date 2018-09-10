@@ -6,7 +6,7 @@ store Store {
   state page : String = ""
 
   /* A function to increment the counter. */
-  fun increment : Void {
+  fun increment : Promise(Never, Void) {
     /*
     The next statements steps the state forward
     based on the previous state.
@@ -15,17 +15,17 @@ store Store {
   }
 
   /* A function to decrement the counter. */
-  fun decrement : Void {
+  fun decrement : Promise(Never, Void) {
     next { counter = counter - 1 }
   }
 
   /* A function to set the counter. */
-  fun setCounter (counter : Number) : Void {
+  fun setCounter (counter : Number) : Promise(Never, Void) {
     next { counter = counter }
   }
 
   /* A function to set the page. */
-  fun setPage (page : String) : Void {
+  fun setPage (page : String) : Promise(Never, Void) {
     next { page = page }
   }
 }

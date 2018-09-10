@@ -15,9 +15,9 @@ component About {
   state content : String = ""
 
   /* When the component is mounted. */
-  fun componentDidMount : Void {
+  fun componentDidMount : Promise(Never, Void) {
     /* In a do block statements are executed asynchronously in sequence. */
-    do {
+    sequence {
       /* Set the status to loading. */
       next { status = Status::Loading }
 

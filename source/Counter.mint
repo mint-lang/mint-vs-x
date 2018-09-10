@@ -1,9 +1,9 @@
 component Counter {
   /* This is a function to handle the increment button. */
-  property onIncrement : Function(Void) = () : Void => { void }
+  property onIncrement : Function(a) = () : Void => { void }
 
   /* This is a function to handle the decrement button. */
-  property onDecrement : Function(Void) = () : Void => { void }
+  property onDecrement : Function(a) = () : Void => { void }
 
   /* This is a counter number to display. */
   property counter : Number = 0
@@ -29,12 +29,10 @@ component Counter {
   get background : String {
     if (counter >= 10) {
       "lightgreen"
+    } else if (counter < 0) {
+      "orangered"
     } else {
-      if (counter < 0) {
-        "orangered"
-      } else {
-        "#F2F2F2"
-      }
+      "#F2F2F2"
     }
   }
 
