@@ -4,8 +4,8 @@ component TestCounter {
 
   fun render : Html {
     <Counter
-      onIncrement={() : Void => { next { counter = counter + 1 } }}
-      onDecrement={() : Void => { next { counter = counter - 1 } }}
+      onIncrement={() : Promise(Never, Void) => { next { counter = counter + 1 } }}
+      onDecrement={() : Promise(Never, Void) => { next { counter = counter - 1 } }}
       counter={counter}/>
   }
 }
