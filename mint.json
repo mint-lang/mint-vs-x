@@ -2,7 +2,16 @@
   "name": "mint-vs-x",
   "application": {
     "title": "Counter",
-    "icon": "assets/logo.png"
+    "icon": "assets/logo.png",
+    "name": "Counter",
+    "orientation": "portrait",
+    "display": "standalone",
+    "theme-color": "#FFF",
+    "meta": {
+      "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "description": "A simple counter example",
+      "charset": "utf-8"
+    }
   },
   "source-directories": [
     "source"
