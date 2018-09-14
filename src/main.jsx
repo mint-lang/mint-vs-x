@@ -51,7 +51,7 @@ class Main extends Component<Props> {
       <Counter
         onIncrement={onIncrement}
         onDecrement={onDecrement}
-        counter={counter}
+        counter={"asd"}
       />
     );
   }
