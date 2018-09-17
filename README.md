@@ -1,37 +1,17 @@
-This is the equivalent JavaScript stack of the base Mint example.
+# JavaScript
 
-# Prerequisites
-To start development we need the following things installed:
+This is the JavaScript implementation of a sample application used in "Mint vs X" blog posts.
 
-* [node.js](https://nodejs.org/en/)
-* [yarn](https://yarnpkg.com/en/docs/install#debian-stable)
+# Running the application:
 
-Time to complete: **0.5 hours**
+1. Install [node.js](https://nodejs.org/en/)
+2. Install [yarn](https://yarnpkg.com/en/docs/install#debian-stable)
+3. Install dependencies with `yarn`
+4. Install type annotations for dependencies with `yarn flow-typed install`
+5. Start the development server with `yarn webpack-dev-server`
+6. The application is running on http://localhost:8080
 
-# 1. Development Server
+# Building production files
 
-To get the development server up and running:
-
-* Initialize a new `package.json` with `yarn init`
-* Install webpack packages with
-  `yarn add webpack webpack-cli webpack-dev-server`
-* Install babel packages with
-  `yarn add babel-core babel-loader babel-plugin-typecheck babel-preset-flow babel-preset-react`
-* Install react with `react react-dom`
-* Create [`.babelrc`](./.babelrc)
-* Create [`webpack.config.js`](./webpack.config.js)
-* Create initial [`index.html`](./index.html)
-* Create initial [`src/main.jsx`](./src/main.jsx)
-
-At this point we have type checking, and HTML compiling successfully.
-
-Time to complete: **1.5 hours** (with a lot of web searches)
-
-# 2. Adding styles to elements
-
-This is pretty easy using `styled-components`:
-
-* Install styled-components with `yarn add styled-components`
-* Create initial [`src/main.jsx`](./src/main.jsx)
-
-Time to complete: **0.5 hours**
+1. Run the `yarn webpack --config webpack.prod.config.js` command
+2. The production files are now in `dist` directory
